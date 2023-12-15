@@ -1,10 +1,12 @@
 package com.cristian.proyecto1;
 
 import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Usuarios {
 
-	protected String[] registro = new String[4];
+	protected List<String> registro = new ArrayList<>();
 	protected Scanner entradaOpc = new Scanner(System.in);
 	protected Scanner entradaU = new Scanner(System.in);
 	protected Scanner entradaE = new Scanner(System.in);
@@ -53,12 +55,14 @@ public class Usuarios {
 			menu();
 		}else {
 			System.out.println("\n");
-			for(int c = 0; c < registro.length; c++) {
-				if(registro[c] == null) {
-					System.out.println(c + ".");
-				}else {
-					System.out.println(c + "." + registro[c]);
+			Iterator<String> it = registro.iterator();
+			int i = 0;
+			if (it.hasNext()) {
+				while (it.hasNext()) {
+					System.out.println(c + "." + it.next());
 				}
+			} else {
+				System.out.println(c + ".");
 			}
 			menu();
 		}
