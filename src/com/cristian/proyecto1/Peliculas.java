@@ -67,30 +67,12 @@ public class Peliculas extends Usuarios {
 	}
 
 	protected void editar() {
-		for(int c = 0; c < registro.length; c++) {
-			if(registro[c] == null) {
-				System.out.println("\nLo sentimos, no existe ningun registro de peliculas.");
-				menu();
-			}else {
-				System.out.println("\nPor favor indique el id de la pelicula que desea editar:");
-				id = entradaE.nextInt();
-				
-				if(id >= registro.length) {
-					System.out.println("\nLo sentimos, el valor ingresado no es valido.");
-					menu();
-				}else {
-					if(registro[id] != null) {
-						System.out.println("\nIndique el nuevo nombre de la pelicula:");
-						registro[id] = entradaU.nextLine();
-						System.out.println("\nLa pelicula fue editada correctamente.");
-						menu();
-					}else {
-						System.out.println("\nLo sentimos, no se puede editar un campo vacio.");
-						menu();
-					}
-				}
-			}
-		}
+		Eliminar datosVacios = new DatosVacios();
+        Eliminar validarEntrada = new ValidarEntrada();
+        Eliminar cambiarNombre = new CambiarNombre();
+        datosVacios.setNext(validarEntrada);
+        validarEntrada.setNext(cambiarNombre);
+        datosVacios.handle(registro);
 	}
 
 	protected void eliminar() {
